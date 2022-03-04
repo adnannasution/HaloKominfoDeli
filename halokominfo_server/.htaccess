@@ -1,0 +1,27 @@
+<IfModule mod_headers.c>
+
+Header set Access-Control-Allow-Origin "*"
+
+</IfModule> 
+
+RewriteEngine on
+
+RewriteRule ^halaman_login$ inputfile2.php
+RewriteRule ^halaman_periksa$ inputfile3.php
+RewriteRule ^home$ inputdata.php
+
+
+
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+</IfModule>
+
+
+ErrorDocument 404 https://helpdesk.deliserdangkab.go.id/404.html
+
+
+options all -indexes

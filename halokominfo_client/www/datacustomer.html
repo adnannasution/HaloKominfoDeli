@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Help Desk</title>
+    <link rel="stylesheet" href="css/bulma.min.css">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/sweetalert2.min.css">
+<script src="js/sweetalert2.min.js"></script>
+
+
+<link href="css/aos.css" rel="stylesheet">
+<script src="js/aos.js"></script>
+
+<script src="js/jquery.min.js"></script>
+	
+	
+  </head>
+  <body style="font-family: 'Lora', serif;">
+
+<svg viewbox="0 0 800 400">
+    <path fill="#000099" d="
+        M 800 400
+        Q 200 300 0 270
+        L 0 0
+        L 800 0
+    " />
+</svg>
+
+<span style="font-family: 'Lobster Two', cursive; position:absolute; top:10px; left:10px; font-size: 36px; color:white">
+Halo Kominfo Deli
+</span>
+
+
+
+
+
+  
+  <section  class="section" style="position:absolute; top:12%; margin:5%; width:90%; background-color:white; z-index:9; padding:15px; border-radius:12px; ">
+
+
+
+
+
+
+    <div class="container" style="padding:5px">
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div data-aos="fade-up">
+
+<script>
+function getUrlVars(param=null)
+{
+	if(param !== null)
+	{
+		var vars = [], hash;
+		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		for(var i = 0; i < hashes.length; i++)
+		{
+			hash = hashes[i].split('=');
+			vars.push(hash[0]);
+			vars[hash[0]] = hash[1];
+		}
+		return vars[param];
+	} 
+	else 
+	{
+		return null;
+	}
+}
+
+
+
+var id = getUrlVars("id");
+
+
+ 
+
+</script>	
+
+
+
+<div class="data">
+
+<script type="text/javascript">
+
+ function page(page = 1){
+  $.ajax({
+   'url': 'https://helpdesk.deliserdangkab.go.id/datacustomer.php',
+   'type': 'GET',
+   'dataType': 'JSON',
+   'data': {
+    page: page
+   },
+   'success': function(response){
+    draw_data(response);
+   }
+  });
+ }
+
+ function draw_data(response){
+  // console.log(response);
+  var data = $('.data');
+  var content = '';
+
+  for(var i=0; i<response.data.length; i++){
+
+  if(i==0)
+  {
+  i=1;
+  }
+
+
+	
+	content += '<span class="box"><table width="100%"><tr><td width="50%">'+i+'. <a href="hapuscus.html?id='+ response.data[i].idcus +'">'+ response.data[i].namacus +'</a> <br> <small>'+ response.data[i].opd +'</small> </td></tr></table></span>';   	   
+
+
+
+  	 
+
+   
+  }
+
+  data.append(content);
+ }
+ 
+ 
+ 
+
+ page(1);
+</script>
+
+</div>
+
+
+
+<script>
+
+  </script>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+document.getElementById("target").style.display="none";
+
+function fungsiSaya() {
+  var x = document.getElementById("target");
+  if (x.style.display === "none") {
+    x.style.display = "";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+
+    </div>
+  </section>
+  </body>
+</html>
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+
+	$(document).ready(function(){
+		$(".tombol-daftar").click(function(){
+		
+	document.getElementById("simpan").innerHTML = "Loading..";	
+
+
+		
+			var data = $('.form-user').serialize();
+			$.ajax({
+			    dataType: 'json',
+				type: 'POST',
+				url: "https://helpdesk.deliserdangkab.go.id/editutusan.php",
+				data: data,
+				success: function(response) {
+				
+	document.getElementById("simpan").innerHTML = "Pilih";		
+
+
+
+
+
+if (response.kosong) { // key gagal dikembalikan
+          
+		  
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'error',
+  title: 'Lengkapi data anda !'
+})
+	
+	
+}
+
+
+ 
+ 
+ 
+ 
+  else {
+ 
+ 
+ const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'success',
+  title: 'Input Data Success !'
+})
+
+var userid = response.userid;
+document.cookie=userid;
+
+}
+
+
+
+
+
+
+				
+				}
+			});
+		});
+	});
+	</script>	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+let val_nama = localStorage.getItem('nama');
+ let val = localStorage.getItem('useron');
+  let val_idoperator = localStorage.getItem('idoperator');
+   let val_jabatan = localStorage.getItem('jabatan');
+  
+ </script>
+
+
+<div id="modal-js-example" class="modal" style="padding:20px">
+  <div class="modal-background"></div>
+
+  <div class="modal-content">
+    <div class="box">
+<center>	
+<i style="font-size:36px" class="fas fa-user-circle" aria-hidden="true"></i>
+
+</center>
+<br />	
+<center>
+<span class="tag is-info">operator</span>
+
+<br><font size="+1"><script> document.write(val_nama); </script></font>
+<hr>
+
+  </center>  
+	</div>
+  </div>
+
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+
+
+
+
+<script>
+function getUrlVars(param=null)
+{
+	if(param !== null)
+	{
+		var vars = [], hash;
+		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		for(var i = 0; i < hashes.length; i++)
+		{
+			hash = hashes[i].split('=');
+			vars.push(hash[0]);
+			vars[hash[0]] = hash[1];
+		}
+		return vars[param];
+	} 
+	else 
+	{
+		return null;
+	}
+}
+
+
+
+var id = getUrlVars("id");
+
+ document.getElementById('idmasalahok').value = id;
+ 
+
+</script>	
+
+
+
+
+
+
+
+
+<script>   
+     AOS.init(); 
+</script>
+
+
+<script src="js/modal.js"></script>

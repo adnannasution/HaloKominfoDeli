@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Help Desk</title>
+    <link rel="stylesheet" href="css/bulma.min.css">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
+<link href="css/aos.css" rel="stylesheet">
+<script src="js/aos.js"></script>
+
+<link rel="stylesheet" href="css/sweetalert2.min.css">
+<script src="js/sweetalert2.min.js"></script>
+
+<script src="js/jquery.min.js"></script> 
+
+<script src="cordova.js" id="xdkJScordova_"></script>
+	
+	
+  </head>
+  <body style="font-family: 'Lora', serif;">
+  
+  
+<script>	
+	document.addEventListener("backbutton", onBackKeyDown, false);  
+function onBackKeyDown(e) { 
+   e.preventDefault(); 
+
+window.location="login.html";
+
+
+}
+</script>
+
+
+
+
+<script>
+document.addEventListener("offline", onOffline, false);
+
+function onOffline() {
+    
+alert('Perangkat anda tidak terkoneksi internet');
+	
+}
+</script>   
+
+  
+
+<svg viewbox="0 0 800 400">
+    <path fill="#000099" d="
+        M 800 400
+        Q 200 300 0 270
+        L 0 0
+        L 800 0
+    " />
+</svg>
+
+<span style="font-family: 'Lobster Two', cursive; position:absolute; top:10px; left:10px; font-size: 36px; color:white">
+Register
+</span>
+
+
+
+
+
+  
+  <section data-aos="fade-up" class="section" style="position:absolute; top:12%; margin:5%; width:90%; background-color:white; z-index:9; padding:10px; border-radius:12px; ">
+
+
+
+
+<form id="form-data" class="col s12 form-user"  name="forminput">
+
+<div>
+
+
+
+<script language='javascript'>
+function HitungText(){
+var Teks = document.forminput.nip.value.length;
+var total = document.getElementById('hasil');
+total.innerHTML = Teks + ' digit';
+}
+
+</script>
+
+
+<div class="field">
+  <label class="label">NIP</label>
+  <div class="control  has-icons-left">
+    <input class="input" type="number" name="nip" id="nip" maxlength="16" onKeyUp='HitungText()'>
+		<span class="icon is-small is-left">
+      <i class="fas fa-book"></i>
+	
+    </span>
+	  <label><p align="right"><span class="tag" id='hasil'>0 digit</span></p></label>
+  </div>
+</div>
+
+
+
+
+
+<div class="field">
+  <label class="label">Nama</label>
+  <div class="control  has-icons-left">
+    <input class="input" type="text" name="namacus" id="namacus">
+			<span class="icon is-small is-left">
+      <i class="fas fa-user"></i>
+    </span>
+  </div>
+</div>
+
+
+<div class="field">
+  <label class="label">Perangkat Daerah</label>
+  <div class="box" style="overflow-y:scroll; height:200px">
+
+		  <div id="pesanok">
+   
+	 	  <div></div>
+  
+		  </div>
+
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+$("document").ready(function(){
+
+	$.getJSON('https://helpdesk.deliserdangkab.go.id/selectopd.php', { get_param: 'value' }, function(data) {
+	    $.each(data, function(index, element) {		
+	
+			$('#pesanok').find('div')
+	
+.append($('<table border="0" style="margin-top:10px"><tr><td><input style="margin-top:0px" type=\"radio\" name=\"idopd\" id=\"idopd\" value=\"'+element.idopd+'\"></td><td style="padding-left:5px"> ' +element.opd+'</td></tr></table>')
+								
+	
+				);
+	    });
+	});		
+});
+</script>
+
+
+
+
+
+
+<div class="field">
+  <label class="label">Jabatan</label>
+  <div class="control  has-icons-left">
+    <input class="input" type="text" name="jabatan" id="jabatan">
+			<span class="icon is-small is-left">
+      <i class="fas fa-address-book"></i>
+    </span>
+  </div>
+</div>
+
+
+<div class="field">
+  <label class="label">No. WA</label>
+  <div class="control  has-icons-left">
+    <input class="input" type="number" name="hp" id="hp" maxlength="15">
+				<span class="icon is-small is-left">
+      <i class="fas fa-phone"></i>
+    </span>
+  </div>
+</div>
+
+
+<div class="field">
+  <label class="label">Password</label>
+  <div class="control  has-icons-left">
+    <input class="input" type="password" name="pass" id="pass">
+	<br><small>Minimal 6 karakter</small>
+				<span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+  </div>
+</div>
+
+
+<p align="right">
+	  <label>
+        <input type="checkbox" class="lihatpass" />
+        <span>lihat password</span>
+      </label>
+</p>
+
+<a class="button is-link is-primary tombol-daftar" id="simpan"><i class="fas fa-save"></i>&nbsp; Daftar</a>  
+
+<br>
+<br>
+
+<small><i class="fas fa-info"></i> sudah punya akun, <a href="login.html">login sekarang!</a></small>
+
+
+
+
+
+<script type="text/javascript">
+	$(document).ready(function(){		
+		$('.lihatpass').click(function(){
+			if($(this).is(':checked')){
+				$('#pass').attr('type','text');
+			}else{
+				$('#pass').attr('type','password');
+			}
+		});
+	});
+</script>
+
+
+
+<br><br>
+<progress class="progress is-small is-link" max="100" id="loadingku">15%</progress> 
+
+
+
+
+
+</div>
+
+
+<br>
+
+<center>
+<small>
+&copy; Created DiskominfoStan Deli Serdang
+</small>
+</center>
+
+
+
+
+    </div>
+  </section>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+document.getElementById("loadingku").style.display="none";
+
+
+	$(document).ready(function(){
+		$(".tombol-daftar").click(function(){
+		
+	document.getElementById("simpan").innerHTML = "Loading..";	
+	document.getElementById("loadingku").style.display="";
+
+		
+			var data = $('.form-user').serialize();
+			$.ajax({
+			    dataType: 'json',
+				type: 'POST',
+				url: "https://helpdesk.deliserdangkab.go.id/inputdaftar.php",
+				data: data,
+				success: function(response) {
+				
+	document.getElementById("simpan").innerHTML = "Daftar";		
+	document.getElementById("loadingku").style.display="none";
+
+
+
+
+if (response.kosong) { // key gagal dikembalikan
+          
+		  
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'error',
+  title: 'Lengkapi data anda !'
+})
+	
+	
+}
+
+
+
+
+else if (response.sudah) { // key gagal dikembalikan
+          
+		  
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'error',
+  title: 'Anda sudah terdaftar !'
+})
+	
+	
+}
+
+
+ 
+ 
+ 
+ 
+  else {
+ 
+ 
+ const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'success',
+  title: 'Daftar success !'
+})
+
+var userid = response.userid;
+document.cookie=userid;
+
+
+
+ window.localStorage.setItem('hp', response.hp);
+ let val_hp = localStorage.getItem('hp');
+
+
+
+setTimeout(function () 
+{
+window.location="formotp.html";
+}, 3000);
+
+
+
+
+}
+
+
+
+
+
+
+				
+				}
+			});
+		});
+	});
+	</script>	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>   
+     AOS.init(); 
+</script>
+
+<script src="js/modal.js"></script>

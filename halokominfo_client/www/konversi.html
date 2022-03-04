@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Help Desk</title>
+    <link rel="stylesheet" href="css/bulma.min.css">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	
+
+<link rel="stylesheet" href="css/sweetalert2.min.css">
+<script src="js/sweetalert2.min.js"></script>
+
+<script src="js/jquery.min.js"></script> 
+
+	
+  </head>
+  <body style="font-family: 'Lora', serif;">
+
+<center>  
+<img src="image/hd.png" style="width:100%; height:100px" />  
+</center>
+
+<center>
+<span style="font-family: 'Lobster Two', cursive; font-size: 36px;">
+Help Desk Network
+</span>
+</center>
+
+
+
+
+  
+  <section class="section" >
+
+
+
+  <form id="form-data" class="col s12 form-user">
+
+
+<div data-aos="fade-up">
+
+<div class="field">
+  <label class="label">Username</label>
+  <div class="control  has-icons-left">
+    <input class="input" type="text" name="user" id="user">
+	<span class="icon is-small is-left">
+      <i class="fas fa-user"></i>
+    </span>
+	
+  </div>
+</div>
+
+
+<div class="field">
+  <label class="label">Password</label>
+  <div class="control has-icons-left">
+    <input class="input" type="password" name="pass" id="pass">
+		<span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+  </div>
+</div>
+
+
+<p align="right">
+	  <label>
+        <input type="checkbox" class="lihatpass" />
+        <span>lihat password</span>
+      </label>
+</p>
+
+
+
+<script type="text/javascript">
+	$(document).ready(function(){		
+		$('.lihatpass').click(function(){
+			if($(this).is(':checked')){
+				$('#pass').attr('type','text');
+			}else{
+				$('#pass').attr('type','password');
+			}
+		});
+	});
+</script>
+
+
+
+<a class="button is-link is-primary tombol-simpan" id="simpan"><i class="fas fa-paper-plane"></i>&nbsp;Login</a>  
+<br>
+<br>
+<a href="lupapass.html">
+<small><i class="fas fa-info"></i> lupa password?</small>
+</a>
+
+<br><br>
+<progress class="progress is-small is-link" max="100" id="loadingku">15%</progress> 
+
+
+
+
+</div>
+
+
+<br>
+<center>
+<small>
+&copy; Created by Diskominfo Deli Serdang
+</small>
+</center>
+
+
+
+
+    </div>
+  </section>
+  </body>
+</html>
+
+
+
+
+
+
+<script type="text/javascript">
+
+document.getElementById("loadingku").style.display="none";
+
+	$(document).ready(function(){
+		$(".tombol-simpan").click(function(){
+		
+document.getElementById("simpan").innerHTML = "Loading..";			
+document.getElementById("loadingku").style.display="";
+
+		
+			var data = $('.form-user').serialize();
+			$.ajax({
+			    dataType: 'json',
+				type: 'POST',
+				url: "http://localhost/hdajax/konversi.php",
+				data: data,
+				success: function(response) {
+				
+
+	document.getElementById("simpan").innerHTML = "Login";	
+	document.getElementById("loadingku").style.display="none";
+
+
+
+if (response.gagal) { // key gagal dikembalikan
+          
+		  
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'error',
+  title: 'Login gagal !'
+})
+		  
+		  
+ } else {
+ 
+ 
+ const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'success',
+  title: 'Login success !'
+})
+
+
+
+
+var useron = response.userid;
+
+				
+  window.localStorage.setItem('useron', response.userid);
+ let val = localStorage.getItem('useron');
+ 
+ 
+ window.localStorage.setItem('nama', response.nama);
+ let val_nama = localStorage.getItem('nama');
+  
+ 
+ window.localStorage.setItem('pass', response.pass);
+ let val_pass = localStorage.getItem('pass');
+ 
+ window.localStorage.setItem('idcus', response.idcus);
+ let val_idcus = localStorage.getItem('idcus');
+ 
+ window.localStorage.setItem('idteknisi', response.idteknisi);
+ let val_idteknisi = localStorage.getItem('idteknisi');
+ 
+ window.localStorage.setItem('idoperator', response.idoperator);
+ let val_idoperator = localStorage.getItem('idoperator');
+ 
+  window.localStorage.setItem('jabatan', response.jabatan);
+ let val_jabatan = localStorage.getItem('jabatan');
+
+ window.localStorage.setItem('idopd', response.idopd);
+ let val_idopd = localStorage.getItem('idopd');
+ 
+  window.localStorage.setItem('opd', response.opd);
+ let val_opd = localStorage.getItem('opd');
+
+setTimeout(function () 
+{
+
+if(val_jabatan=='operator')
+{
+window.location="tampilmasalah_o.html";
+}
+else if(val_jabatan=='teknisi')
+{
+window.location="tampilmasalah_t.html";
+}
+else
+{
+window.location="formpengaduan.html";
+}
+
+}, 1500);
+
+
+
+
+}
+
+
+
+
+
+
+				
+				}
+			});
+		});
+	});
+	</script>	
+	
+
+
+
+
+
+
+
+
+
+<script>   
+     AOS.init(); 
+</script>
+
+<script src="js/modal.js"></script>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Help Desk</title>
+    <link rel="stylesheet" href="css/bulma.min.css">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/sweetalert2.min.css">
+<script src="js/sweetalert2.min.js"></script>
+
+
+<link href="css/aos.css" rel="stylesheet">
+<script src="js/aos.js"></script>
+
+<script src="js/jquery.min.js"></script>
+	
+	
+  </head>
+  <body style="font-family: 'Lora', serif;">
+
+<svg viewbox="0 0 800 400">
+    <path fill="#000099" d="
+        M 800 400
+        Q 200 300 0 270
+        L 0 0
+        L 800 0
+    " />
+</svg>
+
+<span style="font-family: 'Lobster Two', cursive; position:absolute; top:10px; left:10px; font-size: 36px; color:white">
+Halo Kominfo Deli
+</span>
+
+
+
+  <section  class="section" style="position:absolute; top:12%; margin:5%; width:90%; background-color:white; z-index:9; padding:15px; border-radius:12px; ">
+
+
+
+    <div class="container" style="padding:5px">
+	
+
+
+
+
+
+
+
+<script>
+let val_nama = localStorage.getItem('nama');
+ let val = localStorage.getItem('useron');
+  let val_idteknisi = localStorage.getItem('idteknisi');
+  
+ </script>
+
+
+
+
+
+<div data-aos="fade-up">
+
+
+<script>
+function getUrlVars(param=null)
+{
+	if(param !== null)
+	{
+		var vars = [], hash;
+		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		for(var i = 0; i < hashes.length; i++)
+		{
+			hash = hashes[i].split('=');
+			vars.push(hash[0]);
+			vars[hash[0]] = hash[1];
+		}
+		return vars[param];
+	} 
+	else 
+	{
+		return null;
+	}
+}
+
+
+
+var id = getUrlVars("id");
+
+
+ 
+
+</script>	
+
+<div class="data">
+
+<script type="text/javascript">
+
+ function page(page = 1){
+  $.ajax({
+   'url': 'https://helpdesk.deliserdangkab.go.id/detailmasalah_t.php?id='+id,
+   'type': 'GET',
+   'dataType': 'JSON',
+   'data': {
+    page: page
+   },
+   'success': function(response){
+    draw_data(response);
+   }
+  });
+ }
+
+ function draw_data(response){
+  // console.log(response);
+  var data = $('.data');
+  var content = '';
+
+  for(var i=0; i<response.data.length; i++){
+
+   ii=i+1;
+   
+   
+   
+   
+   
+ if(response.data[i].status=='')
+ {
+  content += '<p align="right"><img src="image/aa.gif" width="40%"/><br /></p>';
+  content += '<span class="tag is-warning">Sedang ditindaklanjuti..</span>';
+   }
+   
+  else if(response.data[i].status=='menuju lokasi')
+ {
+  content += '<p align="right"><img src="image/b.gif" width="40%"/><br /></p>';
+  content += '<span class="tag is-warning">Menuju lokasi..</span>';
+   }
+  else if(response.data[i].status=='sedang perbaikan')
+ {
+  content += '<p align="right"><img src="image/c.gif" width="30%"/><br /></p>';
+  content += '<span class="tag is-warning">Sedang perbaikan..</span>';
+   }
+   
+  else if(response.data[i].status=='pending')
+ {
+  content += '<p align="right"><img src="image/jam.jpeg" width="30%"/><br /></p>';
+  content += '<span class="tag is-danger">Pending</span>';
+   }
+  else if(response.data[i].status=='selesai perbaikan')
+ {
+  content += '<p align="right"><img src="image/selesaiku.jpg" width="30%"/><br /></p>';
+  content += '<span class="tag is-success">Perbaikan sukses</span>';
+   }   
+   
+   
+
+ content += '<div class="field">';
+  content += '<label class="label">ID Tiket</label>';
+  content += '<div class="control  has-icons-right">';
+   content += '<input class="input" type="text" value="'+ response.data[i].kode +'" readonly>';
+	content += '<span class="icon is-small is-right">';
+      content += '<i class="fas fa-address-book"></i>';
+    content += '</span>	';
+  content += '</div>';
+content += '</div>';
+
+
+   
+   
+ content += '<div class="field">';
+  content += '<label class="label">OPD</label>';
+  content += '<div class="control  has-icons-right">';
+   content += '<input class="input" type="text" value="'+ response.data[i].opd +'" readonly>';
+	content += '<span class="icon is-small is-right">';
+      content += '<i class="fas fa-address-book"></i>';
+    content += '</span>	';
+  content += '</div>';
+content += '</div>';
+
+
+
+ content += '<div class="field">';
+  content += '<label class="label">Nama</label>';
+  content += '<div class="control  has-icons-right">';
+   content += '<input class="input" type="text" value="'+ response.data[i].namacus +'" readonly>';
+	content += '<span class="icon is-small is-right">';
+      content += '<i class="fas fa-user"></i>';
+    content += '</span>	';
+  content += '</div>';
+content += '</div>';
+
+
+content += '<div class="field">';
+  content += '<label class="label">Tanggal</label>';
+  content += '<div class="control">';
+    content += '<div class="control  has-icons-right">';
+    content += '<input class="input" type="text" value="'+ response.data[i].tanggalmasalah +'" readonly>';
+				content += '<span class="icon is-small is-right">';
+      content += '<i class="fas fa-calendar"></i>';
+    content += '</span>	';
+  content += '</div>';
+content += '</div>';
+
+
+content += '<div class="field">';
+  content += '<label class="label">Waktu</label>';
+    content += '<div class="control  has-icons-right">';
+    content += '<input class="input" type="text" value="'+ response.data[i].waktumasalah +'" readonly>';
+	content += '<span class="icon is-small is-right">';
+      content += '<i class="fas fa-clock"></i>';
+    content += '</span>	';
+  content += '</div>';
+content += '</div>';
+
+
+
+
+
+content += '<article class="message is-info">';
+  content += '<div class="message-header">';
+    content += '<p>Deskripsi Pengaduan</p>';
+    content += '<i class="fas fa-comment"></i>';
+  content += '</div>';
+  content += '<div class="message-body">'+ response.data[i].masalah +'</div>';
+content += '</article>';
+	  
+if(response.data[i].ket!='')
+{
+content += '<article class="message is-warning">';
+  content += '<div class="message-header">';
+    content += '<p>Keterangan</p>';
+    content += '<i class="fas fa-calendar"></i>';
+  content += '</div>';
+  content += '<div class="message-body">'+ response.data[i].ket +'</div>';
+content += '</article>';
+}
+	  
+	  
+  content += '<center><div>'+ response.data[i].rating +'</div></center>';    
+	 	  
+	  
+	  
+   
+  }
+
+  data.append(content);
+ }
+
+ page(1);
+</script>
+
+</div>
+
+
+
+<br>
+<button class="button is-link is-primary tombol-ok" id="ok"><i class="fas fa-search"></i>&nbsp;lihat teknisi</button>	
+
+<script>
+	$(document).ready(function(){
+	$(".tombol-ok").click(function(){	
+
+window.location="lihatteknisi.html?id="+id;
+				
+		});
+	});			
+   
+</script> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<input type="checkbox" onClick="fungsiSaya()"> Laporkan Status
+<br><br>
+
+<div id="target">
+
+
+<form id="form-data" class="col s12 form-user">
+
+<input type="hidden" name="idmasalahok" id="idmasalahok">
+
+<input type="hidden" name="idteknisi" id="idteknisi">
+
+<div class="field" style="display:none">
+  <label class="label">Tindakan</label>
+  <div class="control">
+  <textarea name="tindakan" id="tindakan" class="textarea"></textarea>
+  </div>
+</div>
+
+
+
+<div class="field">
+
+  <div class="box">
+  <input type="radio" name="status" value="menuju lokasi"> &nbsp; Menuju Lokasi
+  </div>
+  
+    <div class="box">
+  <input type="radio" name="status" value="sedang perbaikan"> &nbsp; Sedang Perbaikan
+  </div>
+  
+   <div class="box">
+  <input type="radio" name="status" value="pending"> &nbsp; Pending
+  </div>
+  
+  <div class="box">
+  <input type="radio" name="status" value="selesai perbaikan"> &nbsp; Selesai Perbaikan
+  </div>
+  
+  
+  
+  
+     <div class="box">
+  <a onClick="fungsiSaya2()"><i class="fas fa-edit"></i> Isi keterangan </a>
+  
+  <div id="target2">	
+    <textarea name="ket" id="ket" class="textarea" placeholder="keterangan.."></textarea>
+  </div>
+  
+  </div>
+  
+</div>
+
+
+<a class="button is-link is-primary tombol-daftar" id="simpan"><i class="fas fa-paper-plane"></i>&nbsp; Laporkan</a>  
+
+</form>
+
+
+</div>
+
+<center>
+<hr style="width:50%">
+</center>
+
+
+<script>
+document.getElementById("target").style.display="none";
+
+function fungsiSaya() {
+  var x = document.getElementById("target");
+  if (x.style.display === "none") {
+    x.style.display = "";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+
+
+<script>
+document.getElementById("target2").style.display="none";
+
+function fungsiSaya2() {
+  var x = document.getElementById("target2");
+  if (x.style.display === "none") {
+    x.style.display = "";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+
+    </div>
+  </section>
+  </body>
+</html>
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+
+	$(document).ready(function(){
+		$(".tombol-daftar").click(function(){
+		
+	document.getElementById("simpan").innerHTML = "Loading..";	
+
+
+		
+			var data = $('.form-user').serialize();
+			$.ajax({
+			    dataType: 'json',
+				type: 'POST',
+				url: "https://helpdesk.deliserdangkab.go.id/inputtindakan.php",
+				data: data,
+				success: function(response) {
+				
+	document.getElementById("simpan").innerHTML = "Laporkan";		
+
+
+
+
+
+if (response.kosong) { // key gagal dikembalikan
+          
+		  
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'error',
+  title: 'Lengkapi data anda !'
+})
+	
+	
+}
+
+
+ 
+ 
+ 
+ 
+  else {
+ 
+ 
+ const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'success',
+  title: 'Update status sukses !'
+})
+
+
+
+setTimeout(function () 
+{
+window.location="detailmasalah_t.html?id="+id;
+}, 1500);
+
+
+
+
+}
+
+
+
+
+
+
+				
+				}
+			});
+		});
+	});
+	</script>	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+let val_nama = localStorage.getItem('nama');
+ let val = localStorage.getItem('useron');
+  let val_idoperator = localStorage.getItem('idoperator');
+   let val_jabatan = localStorage.getItem('jabatan');
+  
+ </script>
+
+
+
+<div id="modal-js-example" class="modal" style="padding:20px">
+  <div class="modal-background"></div>
+
+  <div class="modal-content">
+    <div class="box">
+<center>	
+<i style="font-size:36px" class="fas fa-user-circle" aria-hidden="true"></i>
+
+</center>
+<br />	
+<center>
+<span class="tag is-info">Teknisi</span>
+
+<br><font size="+1"><script> document.write(val_nama); </script></font>
+<hr>
+
+  </center>  
+	</div>
+  </div>
+
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+
+
+
+
+
+<script>
+function getUrlVars(param=null)
+{
+	if(param !== null)
+	{
+		var vars = [], hash;
+		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		for(var i = 0; i < hashes.length; i++)
+		{
+			hash = hashes[i].split('=');
+			vars.push(hash[0]);
+			vars[hash[0]] = hash[1];
+		}
+		return vars[param];
+	} 
+	else 
+	{
+		return null;
+	}
+}
+
+
+
+var id = getUrlVars("id");
+
+ document.getElementById('idmasalahok').value = id;
+  document.getElementById('idteknisi').value = val_idteknisi;
+ 
+
+</script>	
+
+
+
+
+
+
+
+
+<script>   
+     AOS.init(); 
+</script>
+
+
+<script src="js/modal.js"></script>

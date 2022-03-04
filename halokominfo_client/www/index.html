@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Help Desk</title>
+    <link rel="stylesheet" href="css/bulma.min.css">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
+<link href="css/aos.css" rel="stylesheet">
+<script src="js/aos.js"></script>
+	
+
+<link rel="stylesheet" href="css/sweetalert2.min.css">
+<script src="js/sweetalert2.min.js"></script>
+
+<script src="js/jquery.min.js"></script> 
+
+<link href="css/aos.css" rel="stylesheet">
+
+
+	<script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
+	<link rel="stylesheet" href="css/center-radar.css">
+
+<script src="js/jquery.min.js"></script> 
+	
+  </head>
+  <body>
+
+
+
+
+
+<script>
+let val_nama = localStorage.getItem('nama');
+ let val = localStorage.getItem('useron');
+  let val_idcus = localStorage.getItem('idcus');
+   let val_idopd = localStorage.getItem('idopd');
+      let val_opd = localStorage.getItem('opd');
+	  let val_jabatan = localStorage.getItem('jabatan');
+	  
+	  
+if(val_jabatan=='operator' && val_nama!='')
+{
+window.location="formpengaduan_o.html";
+}
+else if(val_jabatan=='teknisi' && val_nama!='')
+{
+window.location="analis.html";
+}
+else if(val_jabatan=='customer' && val_nama!='')
+{
+window.location="formpengaduan.html";
+}
+else if(val_jabatan=='Pimpinan' && val_nama!='')
+{
+window.location="analis_teknisi.html";
+}
+else
+{
+window.location="login.html";
+}	  
+	  
+ </script>
+
+
+
+</body>
+
+

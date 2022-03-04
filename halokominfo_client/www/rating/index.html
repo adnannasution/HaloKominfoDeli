@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rating</title>
+	<link rel="stylesheet" type="text/css" href="css/star-rating.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.4/css/bootstrap.css" integrity="sha512-KsdCRnLXUKDOyOPhhh7EjWSh2Mh/ZI64XwaYQPGyvuQYWBE1FGTCPnUKjLvD+DDQevQdks3US94aYJsIQxTiKg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">	
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<link rel="stylesheet" href="../css/sweetalert2.min.css">
+<script src="../js/sweetalert2.min.js"></script>	
+	
+</head>
+
+<body style="font-family: 'Lora', serif;" data-aos="fade-up">
+
+
+<center>  
+<img src="../image/hd.png" style="width:100%; height:100px" />  
+</center>
+
+<span style="font-family: 'Lobster Two', cursive; position:absolute; top:10px; left:10px; font-size: 36px; color:white">
+Halo Kominfo Deli
+</span>
+
+<br>
+
+	<div class="text-center" style="padding:20px">
+
+<form id="form-data" class="col s12 form-user">
+
+<div class="alert alert-success">
+Sudah selesai dilakukan tindakan perbaikan pada permasalahan anda, <br>Mau kasih bintang berapa nih?
+</div>
+
+<br>	
+    <p>
+        Tingkat kepuasan anda
+        <input id="rating-input" name="rating-input" type="text" title=""/>
+		
+		<input id="idmasalahok" name="idmasalahok" type="hidden">
+    </p>
+<br>	
+<a class="btn btn-primary tombol-daftar btn-block text-white" id="simpan" style="color:white">Selesai</a> 	
+	
+</form>	
+    </div>
+	
+
+
+<script type="text/javascript">
+
+
+
+
+	$(document).ready(function(){
+		$(".tombol-daftar").click(function(){
+		
+	document.getElementById("simpan").innerHTML = "Loading..";	
+
+
+		
+			var data = $('.form-user').serialize();
+			$.ajax({
+			    dataType: 'json',
+				type: 'POST',
+				url: "https://helpdesk.deliserdangkab.go.id/inputrating.php",
+				data: data,
+				success: function(response) {
+				
+	document.getElementById("simpan").innerHTML = "Selesai";		
+
+
+
+
+
+if (response.kosong) { // key gagal dikembalikan
+          
+		  
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'error',
+  title: 'Mohon berikan nilai !'
+})
+	
+	
+}
+
+
+ 
+ 
+ 
+ 
+  else {
+ 
+ 
+ const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'success',
+  title: 'Terimakasih!'
+})
+
+var userid = response.userid;
+document.cookie=userid;
+
+
+setTimeout(function () 
+{
+window.location="../tampilmasalah_cs.html";
+}, 2000);
+
+
+
+
+}
+
+
+
+
+
+
+				
+				}
+			});
+		});
+	});
+	</script>	
+	
+
+
+
+<script>
+function getUrlVars(param=null)
+{
+	if(param !== null)
+	{
+		var vars = [], hash;
+		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		for(var i = 0; i < hashes.length; i++)
+		{
+			hash = hashes[i].split('=');
+			vars.push(hash[0]);
+			vars[hash[0]] = hash[1];
+		}
+		return vars[param];
+	} 
+	else 
+	{
+		return null;
+	}
+}
+
+
+
+var id = getUrlVars("id");
+
+document.getElementById('idmasalahok').value = id;
+
+</script>	
+
+
+
+
+<script>   
+     AOS.init(); 
+</script>
+
+
+
+		
+	
+    
+
+<script type="text/javascript" src="js/star-rating.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var $inp = $('#rating-input');
+		
+		//$inp.attr('value','4');
+			
+		$inp.rating({
+                min: 0,
+                max: 5,
+                step: 1,
+                size: 'sm',
+                showClear: false
+            });
+		$inp.on('rating.change', function () {
+			//alert('Nilai rating : '+$('#rating-input').val());
+		});
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Help Desk</title>
+    <link rel="stylesheet" href="css/bulma.min.css">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/sweetalert2.min.css">
+<script src="js/sweetalert2.min.js"></script>
+
+
+<link href="css/aos.css" rel="stylesheet">
+<script src="js/aos.js"></script>
+
+<script src="js/jquery.min.js"></script>
+	
+	
+  </head>
+  <body style="font-family: 'Lora', serif;">
+
+<svg viewbox="0 0 800 400">
+    <path fill="#000099" d="
+        M 800 400
+        Q 200 300 0 270
+        L 0 0
+        L 800 0
+    " />
+</svg>
+
+<span style="font-family: 'Lobster Two', cursive; position:absolute; top:10px; left:10px; font-size: 36px; color:white">
+Help Desk Network
+</span>
+
+  <section  class="section" style="position:absolute; top:12%; margin:5%; width:90%; background-color:white; z-index:9; padding:15px; border-radius:12px; ">
+
+<div data-aos="fade-up">
+
+<script>
+function getUrlVars(param=null)
+{
+	if(param !== null)
+	{
+		var vars = [], hash;
+		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		for(var i = 0; i < hashes.length; i++)
+		{
+			hash = hashes[i].split('=');
+			vars.push(hash[0]);
+			vars[hash[0]] = hash[1];
+		}
+		return vars[param];
+	} 
+	else 
+	{
+		return null;
+	}
+}
+
+
+
+var id = getUrlVars("id");
+
+
+
+</script>	
+
+<center>
+<img src="image/hapus.png" style="width:20%">
+</center>
+
+<form id="form-data" class="col s12 form-user">
+
+<span class="box" style=" margin-top:30%; margin:5px">
+<i class="fas fa-info"></i> Anda yakin customer ini akan di hapus ? 
+<br><br>
+<center>
+<a class="button is-link is-danger tombol-daftar" id="simpan"><i class="fas fa-times"></i>&nbsp;hapus sekarang</a> 
+</center>
+</span>
+
+</form>
+
+<script>
+
+$(document).ready(function(){
+		$(".tombol-daftar").click(function(){
+		
+	document.getElementById("simpan").innerHTML = "Loading..";	
+
+
+		
+			var data = $('.form-user').serialize();
+			$.ajax({
+			    dataType: 'json',
+				type: 'POST',
+				url: "https://helpdesk.deliserdangkab.go.id/hapuscus.php?id="+id,
+				data: data,
+				success: function(response) {
+				
+	document.getElementById("simpan").innerHTML = "hapus sekarang";		
+
+
+
+
+
+if (response.kosong) { // key gagal dikembalikan
+          
+		  
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'error',
+  title: 'Lengkapi data anda !'
+})
+	
+	
+}
+
+
+ 
+ 
+ 
+ 
+  else {
+ 
+ 
+ const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'success',
+  title: 'hapus data success !'
+})
+
+var userid = response.userid;
+document.cookie=userid;
+
+
+setTimeout(function () 
+{
+window.location="datacustomer.html";
+}, 2000);
+
+
+
+
+}
+
+
+
+
+
+
+				
+				}
+			});
+		});
+	});
+
+
+
+</script>
+
+
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>   
+     AOS.init(); 
+</script>
+
+
+<script src="js/modal.js"></script>

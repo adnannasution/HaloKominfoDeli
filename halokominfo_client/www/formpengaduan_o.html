@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Help Desk</title>
+    <link rel="stylesheet" href="css/bulma.min.css">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
+<link href="css/aos.css" rel="stylesheet">
+<script src="js/aos.js"></script>
+
+<link rel="stylesheet" href="css/sweetalert2.min.css">
+<script src="js/sweetalert2.min.js"></script>
+
+<script src="js/jquery.min.js"></script> 
+
+<script src="cordova.js" id="xdkJScordova_"></script>		
+	
+	
+  </head>
+  <body style="font-family: 'Lora', serif;">
+  
+  
+<script>	
+	document.addEventListener("backbutton", onBackKeyDown, false);  
+function onBackKeyDown(e) { 
+   e.preventDefault(); 
+
+     navigator.app.exitApp();
+
+}
+</script>
+
+
+
+<script>
+document.addEventListener("offline", onOffline, false);
+
+function onOffline() {
+    
+alert('Internet anda tidak aktif');
+	
+}
+</script>    
+
+  
+
+<svg viewbox="0 0 800 400">
+    <path fill="#000099" d="
+        M 800 400
+        Q 200 300 0 270
+        L 0 0
+        L 800 0
+    " />
+</svg>
+
+<span style="font-family: 'Lobster Two', cursive; position:absolute; top:10px; left:10px; font-size: 36px; color:white">
+Halo Kominfo Deli
+</span>
+
+
+<a class="js-modal-trigger" data-target="modal-js-example">
+<span style=" position:absolute; top:10px; left:90%; color:white" class="icon is-small"><i class="fas fa-user" aria-hidden="true"></i></span>
+</a>
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+			setInterval(function(){
+				$("#screen-masalah2").load('https://helpdesk.deliserdangkab.go.id/cekbaru.php')
+		    }, 1000);
+});		
+</script>	
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+			setInterval(function(){
+				$("#screen-masalah3").load('https://helpdesk.deliserdangkab.go.id/cekrating_o.php')
+		    }, 500);
+});		
+</script>		
+
+
+
+<span style="color:red;" id="screen-masalah3"></span>
+
+
+  
+  <section  class="section" style="position:absolute; top:12%; margin:5%; width:90%; background-color:white; z-index:9; padding:15px; border-radius:12px; ">
+    <div class="container">
+	
+
+
+<div class="tabs is-toggle is-centered">
+  <ul>
+    <li class="is-active">
+      <a href="formpengaduan_o.html">
+        <span class="icon is-small"><i class="fas fa-plus" aria-hidden="true"></i></span>
+        <span>Aduan</span>
+      </a>
+    </li>
+    <li>
+      <a href="tampilmasalah_o.html">
+        <span class="icon is-small"><i class="fas fa-star" aria-hidden="true"></i></span>
+		<span>New</span> &nbsp;<strong><span style="color:red;" id="screen-masalah2"></span></strong>
+		
+		
+      </a>
+    </li>
+	
+	    <li>
+      <a href="tampilmasalah_os.html">
+        <span class="icon is-small"><i class="fas fa-check" aria-hidden="true"></i></span>
+		<span>End</span>
+      </a>
+    </li>
+	
+
+
+  </ul>
+</div>
+
+
+
+
+
+<div data-aos="fade-up">
+
+<script>
+arrbulan = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+date = new Date();
+millisecond = date.getMilliseconds();
+detik = date.getSeconds();
+menit = date.getMinutes();
+jam = date.getHours();
+hari = date.getDay();
+tanggal = date.getDate();
+bulan = date.getMonth();
+tahun = date.getFullYear();
+
+</script>
+
+
+<script type="text/javascript">
+    window.onload = function() { jam(); }
+   
+    function jam() {
+     var e = document.getElementById('jam'),
+     d = new Date(), h, m, s;
+     h = d.getHours();
+     m = set(d.getMinutes());
+     s = set(d.getSeconds());
+   
+     e.innerHTML = h +':'+ m +':'+ s;
+   
+     setTimeout('jam()', 1000);
+    }
+   
+    function set(e) {
+     e = e < 10 ? '0'+ e : e;
+     return e;
+    }
+   </script>
+   
+   
+ 
+
+<form id="form-data" class="col s12 form-user">
+
+<input type="hidden" name="idopd" id="idopd">
+
+
+
+<div class="field">
+
+ <div class="box">
+   <i class="fas fa-calendar"></i>&nbsp;<script>document.write(tanggal+"-"+arrbulan[bulan]+"-"+tahun);</script>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="field">
+  <label class="label">Deskripsi Pengaduan</label>
+  <div class="control">
+  <textarea class="textarea" name="masalah" id="masalah" placeholder="Jelaskan permasalahan jaringan.."></textarea>
+  </div>
+</div>
+
+
+<div class="field">
+  <label class="label"></label>
+  <div class="control">
+  <input type="checkbox" value="ok" name="yakin" id="yakin">&nbsp;Saya yakin deskripsi pengaduan diatas sudah benar.
+  </div>
+</div>
+
+<br>
+
+<a class="button is-link is-primary tombol-daftar" id="simpan"><i class="fas fa-paper-plane"></i>&nbsp;Kirim pengaduan</a>  
+
+
+
+</form>
+
+<br><br>
+<progress class="progress is-small is-link" max="100" id="loadingku">15%</progress> 
+
+
+
+
+
+</div>
+
+
+<script>
+let val_nama = localStorage.getItem('nama');
+ let val = localStorage.getItem('useron');
+  let val_idcus = localStorage.getItem('idcus');
+   let val_idopd = localStorage.getItem('idopd');
+      let val_opd = localStorage.getItem('opd');
+ </script>
+
+<script> document.getElementById('idopd').value = val_idopd; </script>
+
+
+<div id="modal-js-example" class="modal" style="padding:20px">
+  <div class="modal-background"></div>
+
+  <div class="modal-content">
+    <div class="box">
+<center>	
+<i style="font-size:36px" class="fas fa-user-circle" aria-hidden="true"></i>
+
+</center>
+<br />	
+<center>
+<span class="tag is-info">operator</span>
+
+<br><font size="+1"><script> document.write(val_nama); </script></font>
+
+
+  <a class="panel-block">
+</a>
+  <label class="panel-block">
+  <a href="profil_o.html">
+<i class="fas fa-user"></i>&nbsp;profil saya
+</a>
+  </label>
+
+
+
+  <label class="panel-block">
+  <a href="kondisiteknisi.html" class="tombol-ok">
+<i class="fas fa-clock"></i>&nbsp;lihat kondisi teknisi
+</a>
+  </label>
+  
+  
+    <label class="panel-block">
+  <a href="formopd.html">
+<i class="fas fa-plus"></i>&nbsp;tambah OPD
+</a>
+  </label>
+  
+  
+  
+      <label class="panel-block">
+  <a href="dataopd.html">
+<i class="fas fa-search"></i>&nbsp;lihat data OPD
+</a>
+  </label>
+  
+  
+
+
+
+
+
+  </center>  
+	</div>
+  </div>
+
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </section>
+  </body>
+</html>
+
+
+
+
+<script type="text/javascript">
+
+document.getElementById("loadingku").style.display="none";
+
+
+
+
+	$(document).ready(function(){
+		$(".tombol-daftar").click(function(){
+
+
+  
+  
+  
+  
+		
+	document.getElementById("simpan").innerHTML = "Loading..";	
+	document.getElementById("loadingku").style.display="";
+
+		
+			var data = $('.form-user').serialize();
+			$.ajax({
+			    dataType: 'json',
+				type: 'POST',
+				url: "https://helpdesk.deliserdangkab.go.id/inputpengaduan_o.php",
+				data: data,
+				success: function(response) {
+				
+	document.getElementById("simpan").innerHTML = "Kirim pengaduan";		
+	document.getElementById("loadingku").style.display="none";
+
+
+
+
+
+if (response.kosong) { // key gagal dikembalikan
+          
+		  
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'error',
+  title: 'Lengkapi data anda !'
+})
+	
+	
+}
+
+
+ 
+ 
+ 
+ 
+  else {
+ 
+ 
+ const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'success',
+  title: 'Pengaduan success !'
+})
+
+var userid = response.userid;
+document.cookie=userid;
+
+
+setTimeout(function () 
+{
+window.location="tampilmasalah_o.html";
+}, 2000);
+
+
+
+
+}
+
+
+
+
+
+
+
+
+				
+				}
+			});
+		});
+	});
+	
+	
+	
+
+	
+	
+	</script>	
+	
+
+
+
+
+<script>   
+     AOS.init(); 
+</script>
+
+<script src="js/modal.js"></script>

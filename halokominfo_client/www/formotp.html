@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Halo Kominfo Deli</title>
+    <link rel="stylesheet" href="css/bulma.min.css">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
+<link href="css/aos.css" rel="stylesheet">
+<script src="js/aos.js"></script>
+	
+
+<link rel="stylesheet" href="css/sweetalert2.min.css">
+<script src="js/sweetalert2.min.js"></script>
+
+<script src="js/jquery.min.js"></script> 
+
+	
+  </head>
+  <body style="font-family: 'Lora', serif;">
+
+<svg viewbox="0 0 800 400">
+    <path fill="#000099" d="
+        M 800 400
+        Q 200 300 0 270
+        L 0 0
+        L 800 0
+    " />
+</svg>
+
+<span style="font-family: 'Lobster Two', cursive; position:absolute; top:10px; left:10px; font-size: 36px; color:white">
+Halo Kominfo Deli
+</span>
+
+
+
+
+  
+  <section data-aos="fade-up" class="section" style="position:absolute; top:12%; margin:5%; width:90%; background-color:white; z-index:9; padding:15px; border-radius:12px; ">
+  
+  
+  
+  <script>
+
+ let val_hp = localStorage.getItem('hp');
+ </script>
+
+
+
+  <form id="form-data" class="col s12 form-user">
+  
+  
+  <article class="message is-primary">
+  <div class="message-header">
+    <p>Info</p>
+
+  </div>
+  <div class="message-body">
+   Lihat Chat WA masuk, lalu input kombinasi huruf di kolom ini
+  </div>
+</article>
+
+
+<div>
+
+<div class="field">
+  <label class="label">Kombinasi Huruf</label>
+  
+  
+      <input class="input" type="hidden" name="hp" id="hp">
+
+
+<script> document.getElementById('hp').value = val_hp; </script>
+  
+
+    <input onKeyUp="this.value = this.value.toUpperCase(), SetFocus_a()"  class="input" type="text" name="a" id="a" maxlength="1" style="width:40px; text-align:center" autofocus>
+
+<input onKeyUp="this.value = this.value.toUpperCase(), SetFocus_b()" class="input" type="text" name="b" id="b" maxlength="1" style="width:40px; text-align:center; margin-left:5px">
+	  
+<input onKeyUp="this.value = this.value.toUpperCase(), SetFocus_c()" class="input" type="text" name="c" id="c" maxlength="1" style="width:40px; text-align:center; margin-left:5px">
+
+<input onKeyUp="this.value = this.value.toUpperCase()" class="input" type="text" name="d" id="d" maxlength="1" style="width:40px; text-align:center; margin-left:5px">
+
+
+<script>	
+
+function SetFocus_a() {
+var inputb = document.getElementById ("b");
+inputb.focus ();
+}
+
+function SetFocus_b() {
+var inputc = document.getElementById ("c");
+inputc.focus ();
+}
+
+function SetFocus_c() {
+var inputd = document.getElementById ("d");
+inputd.focus ();
+}
+
+
+
+
+</script>
+
+	
+  </div>
+</div>
+
+
+
+<br><br>
+<a class="button is-link is-primary tombol-simpan" id="simpan"><i class="fas fa-paper-plane"></i>&nbsp;Verifikasi</a>  
+<br>
+
+</form>
+
+
+
+
+
+<br><br>
+<progress class="progress is-small is-link" max="100" id="loadingku">15%</progress> 
+
+
+
+
+</div>
+
+
+<br>
+<center>
+<small>
+&copy; Created by DiskominfoStan Deli Serdang
+</small>
+</center>
+
+
+
+
+    </div>
+  </section>
+  </body>
+</html>
+
+
+
+
+
+
+<script type="text/javascript">
+
+document.getElementById("loadingku").style.display="none";
+
+	$(document).ready(function(){
+		$(".tombol-simpan").click(function(){
+		
+document.getElementById("simpan").innerHTML = "Loading..";			
+document.getElementById("loadingku").style.display="";
+
+		
+			var data = $('.form-user').serialize();
+			$.ajax({
+			    dataType: 'json',
+				type: 'POST',
+				url: "https://helpdesk.deliserdangkab.go.id/cekotp.php",
+				data: data,
+				success: function(response) {
+				
+
+	document.getElementById("simpan").innerHTML = "Verifikasi";	
+	document.getElementById("loadingku").style.display="none";
+
+
+
+if (response.gagal) { // key gagal dikembalikan
+          
+		  
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'error',
+  title: 'Verifikasi gagal !'
+})
+		  
+		  
+ } else {
+ 
+ 
+ const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'success',
+  title: 'Verifikasi  success!'
+})
+
+
+setTimeout(function () 
+{
+window.location="login.html";
+
+}, 3000);
+
+
+}
+
+
+
+
+
+
+				
+				}
+			});
+		});
+	});
+	</script>	
+	
+
+
+
+
+
+
+
+
+
+<script>   
+     AOS.init(); 
+</script>
+
+<script src="js/modal.js"></script>

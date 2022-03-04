@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Help Desk</title>
+    <link rel="stylesheet" href="css/bulma.min.css">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
+
+<link href="css/aos.css" rel="stylesheet">
+<script src="js/aos.js"></script>
+
+<script src="js/jquery.min.js"></script>
+
+<script src="cordova.js" id="xdkJScordova_"></script>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>	
+	
+  </head>
+  <body style="font-family: 'Lora', serif;">
+  
+  
+<script>	
+	document.addEventListener("backbutton", onBackKeyDown, false);  
+function onBackKeyDown(e) { 
+   e.preventDefault(); 
+
+  window.location="tampilmasalah_o.html";
+
+}
+</script>
+
+
+
+<script>
+document.addEventListener("offline", onOffline, false);
+
+function onOffline() {
+    
+alert('Internet anda tidak aktif');
+	
+}
+</script>     
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+			setInterval(function(){
+				$("#screen-masalah2").load('https://helpdesk.deliserdangkab.go.id/cekbaru.php')
+		    }, 1000);
+});		
+</script>	
+
+
+
+ 
+
+<svg viewbox="0 0 800 400">
+    <path fill="#000099" d="
+        M 800 400
+        Q 200 300 0 270
+        L 0 0
+        L 800 0
+    " />
+</svg>
+
+<span style="font-family: 'Lobster Two', cursive; position:absolute; top:10px; left:10px; font-size: 36px; color:white">
+Halo Kominfo Deli
+</span>
+
+
+<a href="formcari.html">
+<span style=" position:absolute; top:10px; left:90%; color:white" class="icon is-small"><i class="fas fa-search" aria-hidden="true"></i></span>
+</a>
+  
+  
+  <section  class="section" style="position:absolute; top:12%; margin:5%; width:90%; background-color:white; z-index:9; padding:15px; border-radius:12px; ">
+  
+  
+    <div class="container">
+	
+
+
+<div class="tabs is-toggle is-centered">
+  <ul>
+    <li >
+      <a href="formpengaduan_o.html">
+        <span class="icon is-small"><i class="fas fa-plus" aria-hidden="true"></i></span>
+        <span>Aduan</span>
+      </a>
+    </li>
+    <li>
+      <a href="tampilmasalah_o.html">
+        <span class="icon is-small"><i class="fas fa-star" aria-hidden="true"></i></span>
+		<span>New </span> &nbsp;<span style="color:red" id="screen-masalah2">
+      </a>
+    </li>
+	
+	    <li class="is-active">
+      <a href="tampilmasalah_os.html">
+        <span class="icon is-small"><i class="fas fa-check" aria-hidden="true"></i></span>
+		<span>End</span>
+      </a>
+    </li>
+	
+
+
+  </ul>
+</div>
+
+
+
+
+
+<div data-aos="fade-up">
+
+
+<script>
+let val_nama = localStorage.getItem('nama');
+ let val = localStorage.getItem('useron');
+  let val_idoperator = localStorage.getItem('idoperator');
+   let val_jabatan = localStorage.getItem('jabatan');
+  
+ </script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+
+	$(document).ready(function(){
+		$(".tombol-daftar").click(function(){
+		
+	document.getElementById("simpan").innerHTML = "Loading..";	
+
+
+		
+			var data = $('.form-user').serialize();
+			$.ajax({
+			    dataType: 'json',
+				type: 'POST',
+				url: "https://helpdesk.deliserdangkab.go.id/inputdaftar.php",
+				data: data,
+				success: function(response) {
+				
+	document.getElementById("simpan").innerHTML = "cari";		
+
+
+
+
+
+if (response.kosong) { // key gagal dikembalikan
+          
+		  
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'error',
+  title: 'Lengkapi data anda !'
+})
+	
+	
+}
+
+
+ 
+ 
+ 
+ 
+  else {
+ 
+ 
+ const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+
+Toast.fire({
+  type: 'success',
+  title: 'pencarian success !'
+})
+
+
+
+
+setTimeout(function () 
+{
+window.location="tampilmasalah_os_cari.html";
+}, 2000);
+
+
+
+
+}
+
+
+
+
+
+
+				
+				}
+			});
+		});
+	});
+	</script>	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="data"></div>
+
+<script type="text/javascript">
+
+ function page(page = 1){
+  $.ajax({
+   'url': 'https://helpdesk.deliserdangkab.go.id/tampilmasalah_os.php',
+   'type': 'GET',
+   'dataType': 'JSON',
+   'data': {
+    page: page
+   },
+   'success': function(response){
+    draw_data(response);
+   }
+  });
+ }
+
+ function draw_data(response){
+  // console.log(response);
+  var data = $('.data');
+  var content = '';
+
+
+
+  if(response.data.length==0)
+  {
+   content += '<span style="color:gray"><center><i class="fas fa-warning"></i> belum ada pengaduan..</center></span>'
+  }
+
+
+
+
+
+ii=0;
+
+  for(var i=0; i<response.data.length; i++){
+
+  ii++
+   
+ if(ii==9)
+ {
+ ii=1;
+ }
+   
+      content += '<a href="detailmasalah_os.html?id='+ response.data[i].idmasalah +'">     <div class="card" style="margin-bottom:15px;"><div class="card-header" style="height:50px; background-image:url(card/'+ii+'.jpg); background-size:cover; color:white; padding:10px"><i class="fas fa-ticket"></i>&nbsp; <small><b>'+ response.data[i].kode +'</b></small></div><div class="card-content"><div class="content" style=" height:100px"><span class="tag is-info">  '+ response.data[i].opd +'</span><br>'+ response.data[i].masalah +'..<br></div></div><div class="card-footer" style="padding:10px; text-align:right"> <small><i class="fas fa-calendar"></i> '+ response.data[i].tanggalmasalah +' <i class="fas fa-clock"></i> '+response.data[i].waktumasalah+'</small></div></div></div></a>';
+   
+  
+   
+   
+  }
+
+  data.append(content);
+ }
+
+ page(1);
+</script>
+
+</div>
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </section>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+<div id="modal-js-example" class="modal" style="padding:20px">
+  <div class="modal-background"></div>
+
+  <div class="modal-content">
+    <div class="box">
+
+	
+<form id="form-data" class="col s12 form-user">
+
+<input type="text" name="cari" id="cari" class="input" placeholder="cari..">
+<br><br>
+<a href="#" class="tombol-daftar button is-primary" id="simpan"> <i class="fas fa-search" aria-hidden="true"></i>cari</a>
+
+</form>
+
+  
+	</div>
+  </div>
+
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>   
+     AOS.init(); 
+</script>
+
+
+<script src="js/modal.js"></script>
